@@ -1,45 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import {
-  FormErrorMessage,
-  FormLabel,
-  FormControl,
-  Input,
-  Button,
-  Container,
-  Box,
-} from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 
-const inter = Inter({ subsets: ["latin"] });
-import { useForm, SubmitHandler } from "react-hook-form";
-
-type Inputs = {
-  example: string;
-  exampleRequired: string;
-};
-
-interface PostType {
-  post: string;
-  description: string;
-}
+import ListPosts from "./components/ListPosts";
+import AddPost from "./components/AddPost";
 
 export default function Home() {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-  } = useForm<PostType>();
-
-  function onSubmit(values: any) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve(values);
-      }, 3000);
-    });
-  }
   return (
     <>
       <Head>
@@ -50,52 +15,8 @@ export default function Home() {
       </Head>
       <main>
         <Container maxW="7xl">
-          <Box mt={10}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <FormControl isInvalid={Boolean(errors.post)}>
-                <FormLabel htmlFor="post">Post Title</FormLabel>
-                <Input
-                  id="postTitleId"
-                  placeholder="Title"
-                  {...register("post", {
-                    required: "This is required",
-                    minLength: {
-                      value: 4,
-                      message: "Minimum length should be 4",
-                    },
-                  })}
-                />
-                <FormErrorMessage>
-                  {errors.post && errors.post.message}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={Boolean(errors.description)}>
-                <FormLabel htmlFor="post">Description</FormLabel>
-                <Input
-                  id="descriptionId"
-                  placeholder="Description"
-                  {...register("description", {
-                    required: "This is required",
-                    minLength: {
-                      value: 4,
-                      message: "Minimum length should be 4",
-                    },
-                  })}
-                />
-                <FormErrorMessage>
-                  {errors.description && errors.description.message}
-                </FormErrorMessage>
-              </FormControl>
-              <Button
-                mt={4}
-                colorScheme="teal"
-                isLoading={isSubmitting}
-                type="submit"
-              >
-                Submit
-              </Button>
-            </form>
-          </Box>
+          <AddPost />
+          <ListPosts />
         </Container>
       </main>
     </>
