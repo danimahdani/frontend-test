@@ -31,6 +31,7 @@ interface PostType {
 const EditPost = () => {
   const toast = useToast();
   const router = useRouter();
+  const { query } = router;
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
@@ -73,13 +74,13 @@ const EditPost = () => {
   useEffect(() => {
     const getDetailPost = async () => {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/posts/${router.query.id}`
+        `${process.env.NEXT_PUBLIC_API_URL}/posts/${query.id}`
       );
 
-      setValue("id", response.data?.id as string);
-      setValue("userId", response.data?.userId as string);
-      setValue("title", response.data?.title as string);
-      setValue("body", response.data?.body as string);
+      setValue("id", response.data?.id);
+      setValue("userId", response.data?.userId);
+      setValue("title", response.data?.title);
+      setValue("body", response.data?.body);
     };
     getDetailPost();
   });
