@@ -26,11 +26,12 @@ const Post = ({ id, userId, title, body }: Posts) => {
         </Box>
         <Spacer />
         <ButtonGroup gap="1">
-          <Link href={`/editPost/${id}`} as={`/editPost/${id}`}>
+          <Link href={`/editPost/${id}`} as={`/EditPost/${id}`}>
             <Button colorScheme="teal" size="xs">
               Edit
             </Button>
           </Link>
+
           <DetailPost id={id} />
         </ButtonGroup>
       </Flex>
