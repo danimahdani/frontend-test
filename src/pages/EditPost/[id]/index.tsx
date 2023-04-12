@@ -82,7 +82,10 @@ const EditPost = () => {
       setValue("title", response.data?.title);
       setValue("body", response.data?.body);
     };
-    getDetailPost();
+
+    setTimeout(() => {
+      getDetailPost();
+    }, 1500);
   });
 
   function onSubmit(values: any) {
