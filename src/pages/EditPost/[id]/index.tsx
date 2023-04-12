@@ -71,21 +71,19 @@ const EditPost = () => {
     formState: { errors, isSubmitting },
   } = useForm<PostType>();
 
+  const getDetailPost = async (id: any) => {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`
+    );
+
+    setValue("id", response.data?.id);
+    setValue("userId", response.data?.userId);
+    setValue("title", response.data?.title);
+    setValue("body", response.data?.body);
+  };
+
   useEffect(() => {
-    const getDetailPost = async () => {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/posts/${query.id}`
-      );
-
-      setValue("id", response.data?.id);
-      setValue("userId", response.data?.userId);
-      setValue("title", response.data?.title);
-      setValue("body", response.data?.body);
-    };
-
-    setTimeout(() => {
-      getDetailPost();
-    }, 1500);
+    getDetailPost(query.id);
   });
 
   function onSubmit(values: any) {
