@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "api": "json-server --watch db.json --port 3005"
+    "lint": "next lint"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.5.5",
