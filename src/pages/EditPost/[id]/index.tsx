@@ -16,9 +16,8 @@ import {
 } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import { Posts } from "@/types/Posts";
-import apipost from "@/pages/helper/apipost";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -36,7 +35,7 @@ const EditPost = () => {
 
   const { mutate } = useMutation(
     async ({ id, userId, title, body }: Posts) =>
-      await apipost.put(`/posts/${id}`, {
+      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`, {
         id,
         userId,
         title,
@@ -72,16 +71,18 @@ const EditPost = () => {
   } = useForm<PostType>();
 
   useEffect(() => {
-    const getDetailPost = () => {
-      apipost.get(`/posts/${router.query.id}`).then((response) => {
-        setValue("id", response.data?.id as string);
-        setValue("userId", response.data?.userId as string);
-        setValue("title", response.data?.title as string);
-        setValue("body", response.data?.body as string);
-      });
+    const getDetailPost = async () => {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/posts/${router.query.id}`
+      );
+
+      setValue("id", response.data?.id as string);
+      setValue("userId", response.data?.userId as string);
+      setValue("title", response.data?.title as string);
+      setValue("body", response.data?.body as string);
     };
     getDetailPost();
-  }, []);
+  });
 
   function onSubmit(values: any) {
     const now = new Date();

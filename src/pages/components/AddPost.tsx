@@ -11,7 +11,6 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { Posts } from "@/types/Posts";
-import apipost from "../helper/apipost";
 
 interface PostType {
   title: string;
@@ -31,7 +30,7 @@ const AddPost = () => {
   //Create a post/discust
   const { mutate } = useMutation(
     async ({ id, title, body }: Posts) =>
-      await apipost.post("/posts", {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
         id,
         title,
         body,

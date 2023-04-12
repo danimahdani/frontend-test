@@ -13,10 +13,9 @@ import {
 import AlertError from "./AlertError";
 import { Posts } from "@/types/Posts";
 import Post from "./Post";
-import apipost from "../helper/apipost";
 
 const allPosts = async () => {
-  const response = await apipost.get("/posts");
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`);
   return response.data;
 };
 

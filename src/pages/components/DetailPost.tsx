@@ -11,19 +11,20 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import apipost from "../helper/apipost";
 import { useMutation } from "@tanstack/react-query";
 import { Posts } from "@/types/Posts";
+import axios from "axios";
 
 const DetailPost = ({ id }: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [detailPost, setDetailPost] = useState<Posts>();
 
-  const getDetailPost = () => {
-    apipost.get(`/posts/${id}`).then((response) => {
-      setDetailPost(response.data);
-      onOpen();
-    });
+  const getDetailPost = async () => {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`
+    );
+    setDetailPost(response.data);
+    onOpen();
   };
 
   return (
