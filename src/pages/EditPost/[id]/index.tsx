@@ -14,7 +14,7 @@ import {
   FormErrorMessage,
   useToast,
 } from "@chakra-ui/react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
 import { Posts } from "@/types/Posts";
@@ -32,6 +32,7 @@ interface PostType {
 const EditPost = () => {
   const toast = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
     async ({ id, userId, title, body }: Posts) =>
@@ -57,6 +58,8 @@ const EditPost = () => {
           status: "success",
           isClosable: true,
         });
+        router.push("/");
+        queryClient.invalidateQueries(["posts"]);
       },
     }
   );

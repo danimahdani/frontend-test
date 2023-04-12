@@ -1,42 +1,28 @@
 {
   "posts": [
     {
-      "title": "JSON SERVER",
-      "description": "foo",
-      "id": 1
+      "id": 1,
+      "title": "Post 1",
+      "userId": 1,
+      "body": "body 1"
     },
     {
-      "title": "REACT",
-      "description": "facebook",
+      "title": "Post 2",
+      "body": "body 2",
+      "userId": 1,
       "id": 2
     },
     {
-      "title": "BOOTSTRAP",
-      "description": "css master",
+      "title": "Post 3",
+      "body": "body 3",
+      "userId": 1,
       "id": 3
     },
     {
-      "title": "MEDIUM",
-      "description": "medium",
-      "id": 4
-    },
-    {
-      "id": 1681309040206,
-      "description": "adasd"
-    },
-    {
-      "id": 1681309088932,
-      "description": "adasd"
-    },
-    {
-      "id": 1681309161637,
-      "title": "benar dong",
-      "description": "adasdzcxvcxzzxcv"
-    },
-    {
-      "id": 1681309169940,
-      "title": "benar dong",
-      "description": "adasdzcxvcxzzxcvzxcvc"
+      "id": 4,
+      "userId": 1,
+      "title": "Post 4",
+      "body": "body 4"
     }
   ]
 }

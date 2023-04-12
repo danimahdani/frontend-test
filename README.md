@@ -7,7 +7,8 @@ yarn dev
 # or
 pnpm dev
 ```
-Run the API Jsonplaceholder
+Run the API Jsonplaceholder localserver
+then changed apipost helper
 
 ```bash
 yarn api

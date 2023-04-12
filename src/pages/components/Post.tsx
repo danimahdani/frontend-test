@@ -9,7 +9,6 @@ import {
   Spacer,
   ButtonGroup,
 } from "@chakra-ui/react";
-import EditPost from "./EditPost";
 import DetailPost from "./DetailPost";
 import Link from "next/link";
 
@@ -27,12 +26,11 @@ const Post = ({ id, userId, title, body }: Posts) => {
         </Box>
         <Spacer />
         <ButtonGroup gap="1">
-          <Link href={`/EditPost/${id}`}>
+          <Link href={`/editPost/${id}`}>
             <Button colorScheme="teal" size="xs">
-              zxcv
+              Edit
             </Button>
           </Link>
-          {/* <EditPost /> */}
           <DetailPost id={id} />
         </ButtonGroup>
       </Flex>
